@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS সম্পূর্ণ গাইড (বাংলা)</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: #f0f8ff;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    p {
+      margin-bottom: 10px;
+    }
+    code {
+      background: #e0e0e0;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .example {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS সম্পূর্ণ গাইড</h1>
+
+  <p>CSS এর পুরো নাম হলো <strong>ক্যাসকেডিং স্টাইল শীটস (Cascading Style Sheets)</strong>। এটি HTML উপাদানগুলোর স্টাইল বা ডিজাইন ঠিক করার জন্য ব্যবহৃত হয়।</p>
+
+  <h2>CSS কি কি নিয়ন্ত্রণ করে?</h2>
+  <ul>
+    <li>টেক্সটের রং ও স্টাইল (color, font, text-align)</li>
+    <li>ব্যাকগ্রাউন্ড (background-color, background-image)</li>
+    <li>বর্ডার (border, border-radius)</li>
+    <li>স্পেসিং (margin, padding)</li>
+    <li>আকার ও অবস্থান (width, height, position)</li>
+    <li>ডিসপ্লে ও লেআউট (display, flexbox, grid)</li>
+    <li>এনিমেশন ও ট্রানজিশন (animation, transition)</li>
+    <li>রেসপনসিভ ডিজাইন (media queries)</li>
+  </ul>
+
+  <h2>CSS লেখার নিয়ম</h2>
+  <p>CSS লেখার সাধারণ গঠন:</p>
+  <div class="example">
+    <code>
+      নির্বাচক {<br>
+        প্রপার্টি: মান;<br>
+      }
+    </code>
+  </div>
+
+  <h2>CSS এর কিছু গুরুত্বপূর্ণ প্রপার্টি</h2>
+  <ul>
+    <li><strong>color</strong> - লেখা বা টেক্সটের রং নির্ধারণ করে।</li>
+    <li><strong>background-color</strong> - ব্যাকগ্রাউন্ডের রং নির্ধারণ করে।</li>
+    <li><strong>font-size</strong> - লেখার আকার নির্ধারণ করে।</li>
+    <li><strong>margin</strong> - উপাদানের বাইরের ফাঁকা জায়গা নির্ধারণ করে।</li>
+    <li><strong>padding</strong> - উপাদানের ভেতরের ফাঁকা জায়গা নির্ধারণ করে।</li>
+    <li><strong>border</strong> - উপাদানের চারপাশে সীমারেখা তৈরি করে।</li>
+    <li><strong>width</strong> এবং <strong>height</strong> - উপাদানের প্রস্থ ও উচ্চতা নির্ধারণ করে।</li>
+    <li><strong>text-align</strong> - লেখা কিভাবে সজ্জিত হবে (বামে, ডানে, মাঝে) তা নির্ধারণ করে।</li>
+    <li><strong>display</strong> - উপাদানের প্রদর্শন নিয়ন্ত্রণ করে (যেমন block, inline, flex)।</li>
+    <li><strong>position</strong> - উপাদান কোথায় অবস্থিত হবে তা নির্ধারণ করে (static, relative, absolute, fixed)।</li>
+    <li><strong>flex</strong> এবং <strong>grid</strong> - লেআউট ডিজাইন করার জন্য ব্যবহৃত হয়।</li>
+    <li><strong>animation</strong> ও <strong>transition</strong> - মুভমেন্ট ও পরিবর্তন যোগ করতে ব্যবহৃত হয়।</li>
+    <li><strong>media queries</strong> - ভিন্ন ভিন্ন ডিভাইসে কিভাবে স্টাইল হবে তা নির্ধারণ করে।</li>
+  </ul>
+
+  <h2>CSS যুক্ত করার ৩টি উপায়</h2>
+  <ul>
+    <li><strong>Inline CSS</strong> - সরাসরি HTML ট্যাগের মধ্যে লিখা।</li>
+    <li><strong>Internal CSS</strong> - &lt;style&gt; ট্যাগের মধ্যে লিখা।</li>
+    <li><strong>External CSS</strong> - আলাদা .css ফাইলে লিখে HTML ফাইলে লিংক করা।</li>
+  </ul>
+
+  <h2>উদাহরণসমূহ</h2>
+  <h3>Inline CSS</h3>
+  <div class="example">
+    <code>
+      &lt;h1 style="color: red;"&gt;হ্যালো বিশ্ব&lt;/h1&gt;
+    </code>
+  </div>
+
+  <h3>Internal CSS</h3>
+  <div class="example">
+    <code>
+      &lt;style&gt;<br>
+      p { color: green; }<br>
+      &lt;/style&gt;
+    </code>
+  </div>
+
+  <h3>External CSS</h3>
+  <div class="example">
+    <code>
+      &lt;link rel="stylesheet" href="style.css"&gt;
+    </code>
+  </div>
+
+  <h2>উন্নত CSS বিষয়বস্তু</h2>
+  <ul>
+    <li><strong>Flexbox:</strong> উপাদানগুলোকে এক লাইনে সাজানোর সহজ উপায়।</li>
+    <li><strong>Grid:</strong> জটিল লেআউট তৈরির জন্য ব্যবহৃত হয়।</li>
+    <li><strong>Responsive Design:</strong> বিভিন্ন স্ক্রিন সাইজের জন্য ডিজাইন তৈরি।</li>
+    <li><strong>Variables:</strong> CSS এ ভেরিয়েবল ব্যবহার করে কোড সংক্ষিপ্ত ও উন্নত করা।</li>
+    <li><strong>Custom Fonts:</strong> নিজের পছন্দের ফন্ট যোগ করা।</li>
+  </ul>
+
+  <h2>উপসংহার</h2>
+  <p>CSS শেখা যতই গভীরে যাবেন, ততই মজার হয়ে উঠবে। নিয়মিত প্র্যাকটিস করুন এবং নিজের প্রোজেক্ট তৈরি করে শিখুন।</p>
+
+</body>
+</html>
