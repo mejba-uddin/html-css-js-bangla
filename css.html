@@ -5,11 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS সম্পূর্ণ গাইড (বাংলা)</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Arial', sans-serif;
       line-height: 1.6;
       padding: 20px;
       background-color: #f0f8ff;
+      animation: fadeIn 1s ease-in;
+      transition: background 0.5s, color 0.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     h1, h2, h3 {
       color: #2c3e50;
@@ -30,6 +39,12 @@
       padding: 10px;
       margin: 10px 0;
       border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .example:hover {
+      background: #f9f9f9;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     ul {
       list-style-type: disc;
@@ -38,180 +53,280 @@
     li {
       margin-bottom: 5px;
     }
+    .nav-table a {
+      display: block;
+      margin: 5px 0;
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .nav-table a:hover {
+      color: #0056b3;
+    }
+    .demo {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px dashed #aaa;
+      background: #fafafa;
+      transition: background 0.3s;
+    }
+    .demo:hover {
+      background: #f0f0f0;
+    }
+    .animated-button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 10px;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .animated-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s, transform 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: scrollFade 1s forwards;
+    }
+    @keyframes scrollFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fun-effect {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ff6347;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
   </style>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+    window.addEventListener('scroll', () => {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          card.style.animationPlayState = 'running';
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-  <h1>CSS সম্পূর্ণ গাইড</h1>
+  <div class="loader"></div>
+  <h1 class="fun-effect">CSS সম্পূর্ণ গাইড</h1>
+  <button onclick="toggleDarkMode()" class="animated-button">ডার্ক মোড চালু করুন</button>
 
-  <h2>১. CSS কি?</h2>
-  <p>CSS এর পুরো নাম হলো <strong>ক্যাসকেডিং স্টাইল শীটস (Cascading Style Sheets)</strong>। এটি HTML উপাদানগুলোর স্টাইল বা ডিজাইন ঠিক করার জন্য ব্যবহৃত হয়।</p>
-
-  <h2>২. কেন CSS ব্যবহার করা হয়?</h2>
-  <ul>
-    <li>ওয়েবপেজকে সুন্দর এবং আকর্ষণীয় দেখানোর জন্য।</li>
-    <li>HTML থেকে আলাদা করে স্টাইল মেইনটেইন করার জন্য।</li>
-    <li>একাধিক পেজে একই স্টাইল প্রয়োগ করার জন্য।</li>
-  </ul>
-
-  <h2>৩. CSS এর ধরন</h2>
-  <ul>
-    <li>Inline CSS</li>
-    <li>Internal CSS</li>
-    <li>External CSS</li>
-  </ul>
-
-  <h2>৪. CSS এর গঠন</h2>
-  <div class="example">
-    <code>
-নির্বাচক { 
-  প্রপার্টি: মান; 
-}
-    </code>
+  <h2>টপিক ন্যাভিগেশন</h2>
+  <div class="nav-table">
+    <a href="#css-ki">CSS কি?</a>
+    <a href="#keno-css">কেন CSS ব্যবহার করা হয়?</a>
+    <a href="#css-dhoron">CSS এর ধরন</a>
+    <a href="#css-gothon">CSS এর গঠন</a>
+    <a href="#css-selector">CSS সিলেক্টর সমূহ</a>
+    <a href="#css-properties">CSS এর গুরুত্বপূর্ণ প্রপার্টি</a>
+    <a href="#box-model">Box Model</a>
+    <a href="#display-property">Display প্রপার্টি</a>
+    <a href="#position-property">Position প্রপার্টি</a>
+    <a href="#flexbox-grid">Flexbox ও Grid Layout</a>
+    <a href="#pseudo">Pseudo-class ও Pseudo-element</a>
+    <a href="#animation">Transition ও Animation</a>
+    <a href="#media-queries">Media Queries</a>
   </div>
 
-  <h2>৫. CSS সিলেক্টর সমূহ</h2>
-  <ul>
-    <li>Element Selector</li>
-    <li>Class Selector</li>
-    <li>ID Selector</li>
-    <li>Group Selector</li>
-    <li>Universal Selector</li>
-    <li>Attribute Selector</li>
-    <li>Pseudo-class Selector</li>
-    <li>Pseudo-element Selector</li>
-  </ul>
-
-  <h3>উদাহরণ: Class Selector</h3>
-  <div class="example">
-    <code>
-.important {
-  color: red;
-  font-weight: bold;
-}
-    </code>
+  <div class="card" id="css-ki">
+    <h3>CSS কি?</h3>
+    <p>CSS (Cascading Style Sheets) হলো একটি স্টাইলিং ভাষা, যা HTML উপাদানগুলির সৌন্দর্য ও বিন্যাস নিয়ন্ত্রণ করে।</p>
+    <div class="demo">
+      <code>p { color: blue; }</code>
+      <p style="color:blue">এই টেক্সট নীল রঙের।</p>
+    </div>
   </div>
 
-  <h2>৬. CSS এর কিছু গুরুত্বপূর্ণ প্রপার্টি</h2>
-  <ul>
-    <li>color</li>
-    <li>background-color</li>
-    <li>font-size</li>
-    <li>margin</li>
-    <li>padding</li>
-    <li>border</li>
-    <li>width ও height</li>
-    <li>text-align</li>
-    <li>display</li>
-    <li>position</li>
-    <li>flex এবং grid</li>
-    <li>animation ও transition</li>
-    <li>media queries</li>
-  </ul>
-
-  <h2>৭. Box Model</h2>
-  <p>প্রত্যেক HTML উপাদান একটি বক্স হিসেবে কাজ করে যার মধ্যে থাকে:</p>
-  <ul>
-    <li>Content</li>
-    <li>Padding</li>
-    <li>Border</li>
-    <li>Margin</li>
-  </ul>
-
-  <h2>৮. Display প্রপার্টি</h2>
-  <ul>
-    <li>block</li>
-    <li>inline</li>
-    <li>inline-block</li>
-    <li>flex</li>
-    <li>grid</li>
-    <li>none</li>
-  </ul>
-
-  <h2>৯. Position প্রপার্টি</h2>
-  <ul>
-    <li>static</li>
-    <li>relative</li>
-    <li>absolute</li>
-    <li>fixed</li>
-    <li>sticky</li>
-  </ul>
-
-  <h2>১০. Flexbox ও Grid Layout</h2>
-  <h3>Flexbox উদাহরণ:</h3>
-  <div class="example">
-    <code>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-    </code>
+  <div class="card" id="keno-css">
+    <h3>কেন CSS ব্যবহার করা হয়?</h3>
+    <p>HTML কনটেন্টকে সুন্দর, আকর্ষণীয় ও ব্যবহারকারী-বান্ধব করতে CSS ব্যবহৃত হয়।</p>
+    <div class="demo">
+      <code>h1 { text-align: center; color: green; }</code>
+      <h1 style="text-align:center; color:green">CSS শেখা মজা!</h1>
+    </div>
   </div>
 
-  <h3>Grid উদাহরণ:</h3>
-  <div class="example">
-    <code>
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-    </code>
+  <div class="card" id="css-dhoron">
+    <h3>CSS এর ধরন</h3>
+    <p>CSS তিনভাবে যুক্ত করা যায়:</p>
+    <ul>
+      <li>Inline CSS</li>
+      <li>Internal CSS</li>
+      <li>External CSS</li>
+    </ul>
+    <div class="demo">
+      <code>&lt;p style="color:red;"&gt;Inline CSS&lt;/p&gt;</code>
+      <p style="color:red;">Inline CSS</p>
+    </div>
   </div>
 
-  <h2>১১. Pseudo-class ও Pseudo-element</h2>
-  <ul>
-    <li><strong>Pseudo-class:</strong> যেমন :hover, :focus, :nth-child()</li>
-    <li><strong>Pseudo-element:</strong> যেমন ::before, ::after</li>
-  </ul>
-
-  <h3>উদাহরণ:</h3>
-  <div class="example">
-    <code>
-button:hover {
-  background-color: blue;
-  color: white;
-}
-    </code>
+  <div class="card" id="css-gothon">
+    <h3>CSS এর গঠন</h3>
+    <p>CSS কোড মূলত দুটি অংশে বিভক্ত: সিলেক্টর এবং ডিক্লারেশন ব্লক।</p>
+    <div class="demo">
+      <code>selector { property: value; }</code>
+      <p>উদাহরণ: <code>h1 { color: blue; }</code></p>
+    </div>
   </div>
 
-  <h2>১২. Transition এবং Animation</h2>
-  <h3>Transition উদাহরণ:</h3>
-  <div class="example">
-    <code>
-div {
-  transition: all 0.3s ease;
-}
-    </code>
+  <div class="card" id="css-selector">
+    <h3>CSS সিলেক্টর সমূহ</h3>
+    <p>CSS সিলেক্টর দ্বারা HTML এলিমেন্ট নির্বাচন করা হয়। যেমন:</p>
+    <ul>
+      <li>Element Selector</li>
+      <li>Class Selector</li>
+      <li>ID Selector</li>
+      <li>Universal Selector</li>
+    </ul>
+    <div class="demo">
+      <code>.className { color: pink; }</code>
+      <p class="example" style="color:pink;">Class Selector Example</p>
+    </div>
   </div>
 
-  <h3>Animation উদাহরণ:</h3>
-  <div class="example">
-    <code>
-@keyframes example {
-  from {background-color: red;}
-  to {background-color: yellow;}
-}
-
-div {
-  animation: example 5s infinite;
-}
-    </code>
+  <div class="card" id="css-properties">
+    <h3>CSS এর গুরুত্বপূর্ণ প্রপার্টি</h3>
+    <p>যেমন: color, background-color, font-size, margin, padding ইত্যাদি।</p>
+    <div class="demo">
+      <code>div { background-color: lightblue; padding: 20px; }</code>
+      <div style="background-color:lightblue; padding:20px;">Background সহ ডিভ।</div>
+    </div>
   </div>
 
-  <h2>১৩. Media Queries</h2>
-  <div class="example">
-    <code>
-@media (max-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
-}
-    </code>
+  <div class="card" id="box-model">
+    <h3>Box Model</h3>
+    <p>HTML প্রতিটি এলিমেন্ট একটি বক্স হিসেবে বিবেচিত হয়: Margin, Border, Padding এবং Content।</p>
+    <div class="demo">
+      <code>div { padding: 20px; border: 5px solid black; margin: 10px; }</code>
+      <div style="padding:20px; border:5px solid black; margin:10px;">Box Model Example</div>
+    </div>
   </div>
 
-  <h2>উপসংহার</h2>
-  <p>CSS শেখা যতই গভীরে যাবেন, ততই মজার হয়ে উঠবে। নিয়মিত প্র্যাকটিস করুন এবং নিজের প্রোজেক্ট তৈরি করে শিখুন। নিজে নিজে বিভিন্ন ডিজাইন বানিয়ে প্র্যাকটিস করুন!</p>
+  <div class="card" id="display-property">
+    <h3>Display প্রপার্টি</h3>
+    <p>HTML এলিমেন্ট কিভাবে প্রদর্শিত হবে তা নির্ধারণ করে (inline, block, flex, grid ইত্যাদি)।</p>
+    <div class="demo">
+      <code>span { display: block; }</code>
+      <span style="display:block; background:#ddd;">Block Span</span>
+    </div>
+  </div>
 
+  <div class="card" id="position-property">
+    <h3>Position প্রপার্টি</h3>
+    <p>এলিমেন্টের পজিশন নির্ধারণ করতে ব্যবহৃত হয়: static, relative, absolute, fixed, sticky।</p>
+    <div class="demo">
+      <code>div { position: relative; top: 10px; }</code>
+      <div style="position:relative; top:10px; background:lightgreen;">Relative Position</div>
+    </div>
+  </div>
+
+  <div class="card" id="flexbox-grid">
+    <h3>Flexbox ও Grid Layout</h3>
+    <p>CSS Flexbox এবং Grid Layout এলিমেন্টের লেআউট ডিজাইন করতে ব্যবহৃত হয়।</p>
+    <div class="demo">
+      <code>display: flex;</code>
+      <div style="display:flex; gap:10px;">
+        <div style="background:orange; padding:10px;">Flex 1</div>
+        <div style="background:orange; padding:10px;">Flex 2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="pseudo">
+    <h3>Pseudo-class ও Pseudo-element</h3>
+    <p>বিশেষ অবস্থায় এলিমেন্ট স্টাইল করার জন্য ব্যবহৃত হয়, যেমন :hover, :first-child, ::before, ::after ইত্যাদি।</p>
+    <div class="demo">
+      <code>a:hover { color: red; }</code>
+      <a href="#" style="color:blue;">মাউস নিয়ে আসুন</a>
+    </div>
+  </div>
+
+  <div class="card" id="animation">
+    <h3>Transition ও Animation</h3>
+    <p>এলিমেন্টে ধীরে ধীরে পরিবর্তন বা মুভমেন্ট যোগ করা হয়।</p>
+    <div class="demo">
+      <code>div { transition: all 0.5s; }</code>
+      <div style="background:lightcoral; padding:20px; transition:all 0.5s;">Hover me!</div>
+    </div>
+  </div>
+
+  <div class="card" id="media-queries">
+    <h3>Media Queries</h3>
+    <p>ভিন্ন ভিন্ন ডিভাইস সাইজ অনুযায়ী CSS স্টাইল পরিবর্তন করতে ব্যবহৃত হয়।</p>
+    <div class="demo">
+      <code>@media (max-width: 600px) { body { background: yellow; } }</code>
+      <p>স্ক্রীন ছোট করলে ব্যাকগ্রাউন্ড পরিবর্তন হবে।</p>
+    </div>
+  </div>
 </body>
 </html>
