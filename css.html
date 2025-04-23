@@ -16,6 +16,83 @@
       animation: fadeIn 1s ease-in;
       transition: background 0.5s, color 0.5s;
     }
+ :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #2196F3;
+    }
+
+    .css-variable-box {
+      background: var(--primary-color);
+      color: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+
+    .gradient-box {
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      border-radius: 10px;
+    }
+
+    .shadow-box {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+      transition: box-shadow 0.3s;
+    }
+
+    .transform-box {
+      width: 100px;
+      height: 100px;
+      background: #ff5722;
+      margin: 20px auto;
+      transition: transform 0.5s;
+    }
+
+    .transform-box:hover {
+      transform: rotate(45deg) scale(1.2);
+    }
+
+    .responsive-img {
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+
+    .z-index-demo {
+      position: relative;
+      height: 120px;
+    }
+
+    .z-index-box {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      padding: 10px;
+    }
+
+    .overflow-demo {
+      width: 200px;
+      height: 100px;
+      border: 2px solid #333;
+      margin: 10px 0;
+      overflow: auto;
+    }
+
+    .css-function-example {
+      width: calc(100% - 40px);
+      margin: 10px auto;
+      padding: 20px;
+      background: #e91e63;
+      color: white;
+    }
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -195,6 +272,14 @@
     <a href="#pseudo">Pseudo-class ও Pseudo-element</a>
     <a href="#animation">Transition ও Animation</a>
     <a href="#media-queries">Media Queries</a>
+     <a href="#css-variables">CSS ভেরিয়েবল</a>
+    <a href="#gradient">গ্রেডিয়েন্ট</a>
+    <a href="#shadow">শ্যাডো ইফেক্ট</a>
+    <a href="#transform">ট্রান্সফর্ম</a>
+    <a href="#responsive-image">রেস্পন্সিভ ইমেজ</a>
+    <a href="#z-index">Z-ইনডেক্স</a>
+    <a href="#css-functions">CSS ফাংশন</a>
+    <a href="#overflow">ওভারফ্লো</a>
   </div>
 
   <div class="card" id="css-ki">
@@ -329,5 +414,88 @@
       <p>স্ক্রীন ছোট করলে ব্যাকগ্রাউন্ড পরিবর্তন হবে।</p>
     </div>
   </div>
+  <!-- নতুন কন্টেন্ট যোগ করা হলো -->
+  <div class="card" id="css-variables">
+    <h3>CSS কাস্টম প্রপার্টি (Variables)</h3>
+    <p>CSS ভেরিয়েবল ব্যবহার করে আমরা রি-ইউজেবল মান সংজ্ঞায়িত করতে পারি। এটি ডাইনামিক স্টাইলিং এবং থিম সাপোর্টের জন্য খুবই কার্যকর।</p>
+    <div class="demo">
+      <code>:root {
+  --primary-color: #4CAF50;
+}
+.element {
+  background: var(--primary-color);
+}</code>
+      <div class="css-variable-box">ভেরিয়েবল ব্যবহার করে তৈরি বক্স</div>
+    </div>
+  </div>
+
+  <div class="card" id="gradient">
+    <h3>গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড</h3>
+    <p>লিনিয়ার এবং রেডিয়াল গ্রেডিয়েন্ট ব্যবহার করে আকর্ষণীয় ব্যাকগ্রাউন্ড তৈরি করা যায়।</p>
+    <div class="demo">
+      <code>background: linear-gradient(45deg, #ff6b6b, #4ecdc4);</code>
+      <div class="gradient-box">গ্রেডিয়েন্ট বক্স</div>
+    </div>
+  </div>
+
+  <div class="card" id="shadow">
+    <h3>শ্যাডো ইফেক্ট</h3>
+    <p>বক্স-শ্যাডো প্রপার্টি ব্যবহার করে এলিমেন্টে ড্রপ শ্যাডো যুক্ত করা যায়।</p>
+    <div class="demo">
+      <code>box-shadow: 0 10px 20px rgba(0,0,0,0.2);</code>
+      <div class="shadow-box">শ্যাডো সহ বক্স</div>
+    </div>
+  </div>
+
+  <div class="card" id="transform">
+    <h3>ট্রান্সফর্ম প্রপার্টি</h3>
+    <p>এলিমেন্টকে ঘোরানো, স্কেল করা এবং স্থানান্তর করতে ট্রান্সফর্ম প্রপার্টি ব্যবহার করা হয়।</p>
+    <div class="demo">
+      <code>transform: rotate(45deg) scale(1.2);</code>
+      <div class="transform-box"></div>
+    </div>
+  </div>
+
+  <div class="card" id="responsive-image">
+    <h3>রেস্পন্সিভ ইমেজ</h3>
+    <p>max-width এবং width প্রপার্টি ব্যবহার করে ইমেজকে রেস্পন্সিভ করা যায়।</p>
+    <div class="demo">
+      <code>img {
+  width: 100%;
+  max-width: 600px;
+}</code>
+      <img src="https://via.placeholder.com/600x200" alt="demo" class="responsive-img">
+    </div>
+  </div>
+
+  <div class="card" id="z-index">
+    <h3>Z-ইনডেক্স</h3>
+    <p>এলিমেন্টের স্ট্যাকিং অর্ডার নিয়ন্ত্রণ করতে Z-ইনডেক্স ব্যবহার করা হয়।</p>
+    <div class="demo z-index-demo">
+      <div class="z-index-box" style="background:#4CAF50; top:20px; left:50px; z-index:2;">লেয়ার 2</div>
+      <div class="z-index-box" style="background:#2196F3; top:50px; left:20px; z-index:1;">লেয়ার 1</div>
+    </div>
+  </div>
+
+  <div class="card" id="css-functions">
+    <h3>CSS ফাংশন</h3>
+    <p>calc(), rgba(), var() ইত্যাদি ফাংশন ব্যবহার করে ডাইনামিক ভ্যালু নির্ধারণ করা যায়।</p>
+    <div class="demo">
+      <code>width: calc(100% - 40px);</code>
+      <div class="css-function-example">calc() ফাংশন উদাহরণ</div>
+    </div>
+  </div>
+
+  <div class="card" id="overflow">
+    <h3>ওভারফ্লো প্রপার্টি</h3>
+    <p>কন্টেন্ট বেশি হলে স্ক্রলবার যোগ করতে overflow প্রপার্টি ব্যবহার করা হয়।</p>
+    <div class="demo">
+      <code>overflow: auto;</code>
+      <div class="overflow-demo">
+        <p>এই এলাকায় অনেক বেশি কন্টেন্ট থাকলে স্ক্রলবার দেখাবে। Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
