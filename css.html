@@ -306,7 +306,9 @@
     <p>বিশেষ অবস্থায় এলিমেন্ট স্টাইল করার জন্য ব্যবহৃত হয়, যেমন :hover, :first-child, ::before, ::after ইত্যাদি। Pseudo-class ব্যবহার করে আমরা এলিমেন্টের বিশেষ অবস্থার জন্য স্টাইল প্রয়োগ করতে পারি।</p>
     <div class="demo">
       <code>a:hover { color: red; }</code>
-      <a href="#" style="color:blue;">মাউস নিয়ে আসুন</a>
+      <a href="#" style="color: blue;" 
+  onmouseover="this.style.color='red';" 
+  onmouseout="this.style.color='blue';">মাউস নিয়ে আসুন</a>
     </div>
   </div>
 
