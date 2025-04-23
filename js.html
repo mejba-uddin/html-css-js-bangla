@@ -68,6 +68,26 @@
       text-align: center;
     }
     .todo-list { background: #f5f5f5; padding: 15px; }
+     .advanced-section {
+      background: #e3f2fd;
+      border-left: 4px solid #2196F3;
+      padding: 15px;
+      margin: 15px 0;
+    }
+    .promise-demo {
+      background: #fff8e1;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .regex-tester {
+      background: #f0f4c3;
+      padding: 15px;
+    }
+    .security-box {
+      background: #ffcdd2;
+      padding: 15px;
+      border: 2px solid #f44336;
+    }
   </style>
 </head>
 <body>
@@ -81,6 +101,12 @@
     <a href="#oop">OOP</a>
     <a href="#storage">স্টোরেজ</a>
     <a href="#game">গেম</a>
+     <a href="#async">এসিনক্রোনাস</a>
+    <a href="#error-handling">এরর হ্যান্ডলিং</a>
+    <a href="#regex">রেগুলার এক্সপ্রেশন</a>
+    <a href="#modules">মডিউল</a>
+    <a href="#security">সিকিউরিটি</a>
+    <a href="#websocket">ওয়েবসকেট</a>
   </div>
 
   <!-- বেসিক সেকশন -->
@@ -140,8 +166,140 @@
       <button class="animated-button" onclick="startGame()">গেম শুরু করুন</button>
     </div>
   </div>
+  <!-- নতুন টপিক যোগ করা হলো -->
+  <div class="card" id="async">
+    <h3>এসিনক্রোনাস জাভাস্ক্রিপ্ট</h3>
+    <div class="promise-demo">
+      <button class="animated-button" onclick="fetchUserData()">ডেটা লোড করুন</button>
+      <div id="userData"></div>
+      <div class="loader" id="loader" style="display:none;"></div>
+    </div>
+  </div>
 
+  <div class="card" id="error-handling">
+    <h3>এরর হ্যান্ডলিং</h3>
+    <div class="advanced-section">
+      <code>
+        try {
+          riskyOperation();
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      </code>
+      <button class="animated-button" onclick="simulateError()">এরর সিমুলেট করুন</button>
+      <p id="errorMessage" style="color:red;"></p>
+    </div>
+  </div>
+
+  <div class="card" id="regex">
+    <h3>রেগুলার এক্সপ্রেশন</h3>
+    <div class="regex-tester">
+      <input type="text" id="regexInput" placeholder="ইমেইল দিন">
+      <button class="animated-button" onclick="validateEmail()">বৈধতা যাচাই</button>
+      <p id="regexResult"></p>
+    </div>
+  </div>
+
+  <div class="card" id="modules">
+    <h3>মডিউল সিস্টেম</h3>
+    <div class="advanced-section">
+      <code>
+        // math.js
+        export const add = (a, b) => a + b;<br>
+        // main.js
+        import { add } from './math.js';
+      </code>
+      <button class="animated-button" onclick="calculate()">গণনা করুন</button>
+      <p id="moduleOutput"></p>
+    </div>
+  </div>
+
+  <div class="card" id="security">
+    <h3>সিকিউরিটি বেসিক</h3>
+    <div class="security-box">
+      <input type="text" id="userInput" placeholder="ইনপুট দিন">
+      <button class="animated-button" onclick="sanitizeInput()">স্যানিটাইজ করুন</button>
+      <p id="safeOutput"></p>
+    </div>
+  </div>
+
+  <div class="card" id="websocket">
+    <h3>রিয়েল-টাইম কমিউনিকেশন</h3>
+    <div class="advanced-section">
+      <div id="chatBox" style="height:150px; overflow-y:scroll; border:1px solid #ccc;"></div>
+      <input type="text" id="messageInput">
+      <button class="animated-button" onclick="sendMessage()">মেসেজ পাঠান</button>
+    </div>
+  </div>
   <script>
+       // নতুন ফাংশনালিটি
+    async function fetchUserData() {
+      try {
+        document.getElementById('loader').style.display = 'block';
+        const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
+        const data = await response.json();
+        document.getElementById('userData').innerHTML = `
+          <p>নাম: ${data.name}</p>
+          <p>ইমেইল: ${data.email}</p>
+        `;
+      } catch (error) {
+        alert('ডেটা লোড করতে সমস্যা!');
+      } finally {
+        document.getElementById('loader').style.display = 'none';
+      }
+    }
+
+    function validateEmail() {
+      const email = document.getElementById('regexInput').value;
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      document.getElementById('regexResult').textContent = 
+        pattern.test(email) ? "✔ বৈধ ইমেইল" : "✖ অবৈধ ইমেইল";
+    }
+
+    function simulateError() {
+      try {
+        undefinedFunction();
+      } catch (error) {
+        document.getElementById('errorMessage').textContent = 
+          `এরর: ${error.message}`;
+      }
+    }
+
+    // সিমুলেটেড মডিউল সিস্টেম
+    const mathModule = (() => {
+      const add = (a, b) => a + b;
+      return { add };
+    })();
+
+    function calculate() {
+      document.getElementById('moduleOutput').textContent = 
+        `যোগফল: ${mathModule.add(5, 3)}`;
+    }
+
+    // XSS প্রতিরোধ
+    function sanitizeInput() {
+      const userInput = document.getElementById('userInput').value;
+      const safeOutput = userInput.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      document.getElementById('safeOutput').innerHTML = safeOutput;
+    }
+
+    // ওয়েবসকেট ডেমো (সিমুলেটেড)
+    const chatHistory = [];
+    function sendMessage() {
+      const message = document.getElementById('messageInput').value;
+      chatHistory.push(message);
+      updateChatBox();
+      document.getElementById('messageInput').value = '';
+    }
+
+    function updateChatBox() {
+      const chatBox = document.getElementById('chatBox');
+      chatBox.innerHTML = chatHistory.map(msg => `
+        <div style="margin:5px; padding:5px; background:#e3f2fd;">${msg}</div>
+      `).join('');
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
     // ডার্ক মোড টগল
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
