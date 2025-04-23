@@ -1,392 +1,344 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>জাভাস্ক্রিপ্ট সম্পূর্ণ গাইড - বাংলা</title>
-  <style>
-    /* CSS গাইডের সকল স্টাইল */
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      padding: 20px;
-      background-color: #f0f8ff;
-      animation: fadeIn 1s ease-in;
-      transition: background 0.5s, color 0.5s;
-    }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    h1, h2, h3 { color: #2c3e50; }
-    .card {
-      background: #ffffff;
-      border-radius: 15px;
-      padding: 20px;
-      margin: 20px 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: scrollFade 1s forwards;
-    }
-    .demo {
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px dashed #aaa;
-      background: #fafafa;
-    }
-    .animated-button {
-      background: linear-gradient(45deg, #6a11cb, #2575fc);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .dark-mode { background-color: #121212; color: #ffffff; }
-    
-    /* নতুন স্টাইল */
-    .game-container {
-      background: #ffe0b2;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 15px 0;
-    }
-    .drag-drop-zone {
-      border: 2px dashed #2196F3;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 15px 0;
-    }
-    .counter-box {
-      font-size: 24px;
-      padding: 15px;
-      background: #4CAF50;
-      color: white;
-      border-radius: 5px;
-      text-align: center;
-    }
-    .todo-list { background: #f5f5f5; padding: 15px; }
-     .advanced-section {
-      background: #e3f2fd;
-      border-left: 4px solid #2196F3;
-      padding: 15px;
-      margin: 15px 0;
-    }
-    .promise-demo {
-      background: #fff8e1;
-      padding: 15px;
-      border-radius: 8px;
-    }
-    .regex-tester {
-      background: #f0f4c3;
-      padding: 15px;
-    }
-    .security-box {
-      background: #ffcdd2;
-      padding: 15px;
-      border: 2px solid #f44336;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আধুনিক জাভাস্ক্রিপ্ট গাইড - বাংলা</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #4f46e5, #8b5cf6);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* হেডার স্টাইল */
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--light);
+        }
+
+        .title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* নেভিগেশন মেনু */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+            border-radius: 15px;
+            margin: 1rem 0;
+            z-index: 1000;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* কার্ড ডিজাইন */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        /* বাটন স্টাইল */
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        /* ইন্টার্যাক্টিভ ডেমো এরিয়া */
+        .demo-box {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .code-snippet {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            color: #fff;
+            font-family: monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        /* গেম সেকশন */
+        .game-container {
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>জাভাস্ক্রিপ্ট সম্পূর্ণ গাইড</h1>
-  <button onclick="toggleDarkMode()" class="animated-button">ডার্ক মোড</button>
+    <div class="container">
+        <header>
+            <h1 class="title">আধুনিক জাভাস্ক্রিপ্ট গাইড</h1>
+            <button class="btn" onclick="toggleDarkMode()">
+                <span>ডার্ক মোড</span>
+            </button>
+        </header>
 
-  <div class="nav-table">
-    <a href="#basics">বেসিক</a>
-    <a href="#dom">DOM</a>
-    <a href="#events">ইভেন্ট</a>
-    <a href="#oop">OOP</a>
-    <a href="#storage">স্টোরেজ</a>
-    <a href="#game">গেম</a>
-     <a href="#async">এসিনক্রোনাস</a>
-    <a href="#error-handling">এরর হ্যান্ডলিং</a>
-    <a href="#regex">রেগুলার এক্সপ্রেশন</a>
-    <a href="#modules">মডিউল</a>
-    <a href="#security">সিকিউরিটি</a>
-    <a href="#websocket">ওয়েবসকেট</a>
-  </div>
+        <nav class="nav-container">
+            <div class="nav-menu">
+                <a href="#basics" class="nav-link">বেসিক</a>
+                <a href="#dom" class="nav-link">DOM</a>
+                <a href="#oop" class="nav-link">OOP</a>
+                <a href="#async" class="nav-link">Async</a>
+                <a href="#game" class="nav-link">গেম</a>
+                <a href="#security" class="nav-link">সিকিউরিটি</a>
+            </div>
+        </nav>
 
-  <!-- বেসিক সেকশন -->
-  <div class="card" id="basics">
-    <h3>ভেরিয়েবল এবং ডেটা টাইপ</h3>
-    <code>let name = "রাহুল"; const age = 25;</code>
-    <div class="demo" onclick="alert('বয়স: ' + age)">
-      ক্লিক করে বয়স দেখুন
+        <!-- বেসিক সেকশন -->
+        <section class="card" id="basics">
+            <h2>বেসিক কনসেপ্ট</h2>
+            <div class="demo-box">
+                <div class="code-snippet">
+                    let name = "রাহুল";<br>
+                    const age = 25;<br>
+                    var isStudent = true;
+                </div>
+                <button class="btn" onclick="alert('বয়স: ' + age)">
+                    বয়স দেখুন
+                </button>
+            </div>
+        </section>
+
+        <!-- DOM ম্যানিপুলেশন -->
+        <section class="card" id="dom">
+            <h2>DOM অপারেশন</h2>
+            <div class="demo-box">
+                <div id="domDemo" class="code-snippet">মূল কন্টেন্ট</div>
+                <button class="btn" onclick="changeText()">টেক্সট পরিবর্তন</button>
+            </div>
+        </section>
+
+        <!-- OOP সেকশন -->
+        <section class="card" id="oop">
+            <h2>অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিং</h2>
+            <div class="demo-box">
+                <div class="code-snippet">
+                    class Animal {<br>
+                        constructor(name) { this.name = name; }<br>
+                        speak() { return `${this.name} শব্দ করছে!`; }<br>
+                    }
+                </div>
+                <button class="btn" onclick="createAnimal()">ডেমো চালান</button>
+                <p id="animalOutput" class="demo-output"></p>
+            </div>
+        </section>
+
+        <!-- এসিনক্রোনাস সেকশন -->
+        <section class="card" id="async">
+            <h2>এসিনক্রোনাস জাভাস্ক্রিপ্ট</h2>
+            <div class="demo-box">
+                <button class="btn" onclick="fetchUserData()">ডেটা লোড করুন</button>
+                <div id="userData" class="code-snippet"></div>
+                <div class="loader" id="loader"></div>
+            </div>
+        </section>
+
+        <!-- গেম সেকশন -->
+        <section class="card" id="game">
+            <h2>ইন্টার্যাক্টিভ গেম</h2>
+            <div class="game-container">
+                <p class="score">স্কোর: <span id="score">0</span></p>
+                <div id="gameArea" class="game-area"></div>
+                <button class="btn" onclick="startGame()">গেম শুরু করুন</button>
+            </div>
+        </section>
     </div>
-  </div>
 
-  <!-- DOM ম্যানিপুলেশন -->
-  <div class="card" id="dom">
-    <h3>DOM অপারেশন</h3>
-    <div id="domDemo">মূল কন্টেন্ট</div>
-    <button class="animated-button" onclick="changeText()">টেক্সট পরিবর্তন</button>
-  </div>
-
-  <!-- ইভেন্ট হ্যান্ডলিং -->
-  <div class="card" id="events">
-    <h3>ইভেন্ট লিসেনার</h3>
-    <div class="drag-drop-zone" ondragover="event.preventDefault()" ondrop="handleDrop(event)">
-      ফাইল ড্রপ করুন
-    </div>
-    <p id="fileStatus"></p>
-  </div>
-
-  <!-- OOP -->
-  <div class="card" id="oop">
-    <h3>অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিং</h3>
-    <code>
-      class Animal {<br>
-        constructor(name) { this.name = name; }<br>
-        speak() { return `${this.name} শব্দ করছে!`; }<br>
-      }
-    </code>
-    <button class="animated-button" onclick="createAnimal()">ডেমো চালান</button>
-    <p id="animalOutput"></p>
-  </div>
-
-  <!-- লোকাল স্টোরেজ -->
-  <div class="card" id="storage">
-    <h3>লোকাল স্টোরেজ</h3>
-    <div class="todo-list">
-      <input type="text" id="todoInput" placeholder="নতুন কাজ">
-      <button class="animated-button" onclick="addTodo()">যোগ করুন</button>
-      <div id="todoItems"></div>
-    </div>
-  </div>
-
-  <!-- গেম ডেভেলপমেন্ট -->
-  <div class="card" id="game">
-    <h3>ক্লিক গেম</h3>
-    <div class="game-container">
-      <p>স্কোর: <span id="score">0</span></p>
-      <div id="gameArea" style="height:100px;position:relative;"></div>
-      <button class="animated-button" onclick="startGame()">গেম শুরু করুন</button>
-    </div>
-  </div>
-  <!-- নতুন টপিক যোগ করা হলো -->
-  <div class="card" id="async">
-    <h3>এসিনক্রোনাস জাভাস্ক্রিপ্ট</h3>
-    <div class="promise-demo">
-      <button class="animated-button" onclick="fetchUserData()">ডেটা লোড করুন</button>
-      <div id="userData"></div>
-      <div class="loader" id="loader" style="display:none;"></div>
-    </div>
-  </div>
-
-  <div class="card" id="error-handling">
-    <h3>এরর হ্যান্ডলিং</h3>
-    <div class="advanced-section">
-      <code>
-        try {
-          riskyOperation();
-        } catch (error) {
-          console.error('Error:', error);
+    <script>
+        // ডার্ক মোড টগল
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
         }
-      </code>
-      <button class="animated-button" onclick="simulateError()">এরর সিমুলেট করুন</button>
-      <p id="errorMessage" style="color:red;"></p>
-    </div>
-  </div>
 
-  <div class="card" id="regex">
-    <h3>রেগুলার এক্সপ্রেশন</h3>
-    <div class="regex-tester">
-      <input type="text" id="regexInput" placeholder="ইমেইল দিন">
-      <button class="animated-button" onclick="validateEmail()">বৈধতা যাচাই</button>
-      <p id="regexResult"></p>
-    </div>
-  </div>
+        // DOM ম্যানিপুলেশন
+        function changeText() {
+            const domDemo = document.getElementById('domDemo');
+            domDemo.innerHTML = `<span style="color: #10b981">টেক্সট আপডেট করা হয়েছে! 🎉</span>`;
+            domDemo.style.animation = "highlight 1s";
+        }
 
-  <div class="card" id="modules">
-    <h3>মডিউল সিস্টেম</h3>
-    <div class="advanced-section">
-      <code>
-        // math.js
-        export const add = (a, b) => a + b;<br>
-        // main.js
-        import { add } from './math.js';
-      </code>
-      <button class="animated-button" onclick="calculate()">গণনা করুন</button>
-      <p id="moduleOutput"></p>
-    </div>
-  </div>
+        // OOP ডেমো
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+            speak() {
+                return `${this.name} শব্দ করছে!`;
+            }
+        }
 
-  <div class="card" id="security">
-    <h3>সিকিউরিটি বেসিক</h3>
-    <div class="security-box">
-      <input type="text" id="userInput" placeholder="ইনপুট দিন">
-      <button class="animated-button" onclick="sanitizeInput()">স্যানিটাইজ করুন</button>
-      <p id="safeOutput"></p>
-    </div>
-  </div>
+        class Dog extends Animal {
+            speak() {
+                return `${this.name} হাঁসছে! 🐶`;
+            }
+        }
 
-  <div class="card" id="websocket">
-    <h3>রিয়েল-টাইম কমিউনিকেশন</h3>
-    <div class="advanced-section">
-      <div id="chatBox" style="height:150px; overflow-y:scroll; border:1px solid #ccc;"></div>
-      <input type="text" id="messageInput">
-      <button class="animated-button" onclick="sendMessage()">মেসেজ পাঠান</button>
-    </div>
-  </div>
-  <script>
-     // DOM কন্টেন্ট লোড হওয়ার পরেই কার্ড দেখা যাবে
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.card').forEach(card => {
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
-    });
-  });
+        function createAnimal() {
+            const dog = new Dog('বাডি');
+            document.getElementById('animalOutput').textContent = dog.speak();
+        }
 
- 
-       // নতুন ফাংশনালিটি
-    async function fetchUserData() {
-      try {
-        document.getElementById('loader').style.display = 'block';
-        const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
-        const data = await response.json();
-        document.getElementById('userData').innerHTML = `
-          <p>নাম: ${data.name}</p>
-          <p>ইমেইল: ${data.email}</p>
-        `;
-      } catch (error) {
-        alert('ডেটা লোড করতে সমস্যা!');
-      } finally {
-        document.getElementById('loader').style.display = 'none';
-      }
-    }
+        // গেম লজিক
+        function startGame() {
+            let score = 0;
+            const gameArea = document.getElementById('gameArea');
+            gameArea.innerHTML = '';
 
-    function validateEmail() {
-      const email = document.getElementById('regexInput').value;
-      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      document.getElementById('regexResult').textContent = 
-        pattern.test(email) ? "✔ বৈধ ইমেইল" : "✖ অবৈধ ইমেইল";
-    }
+            const createTarget = () => {
+                const target = document.createElement('div');
+                target.style.cssText = `
+                    position: absolute;
+                    width: 40px;
+                    height: 40px;
+                    background: #ef4444;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    left: ${Math.random() * 90}%;
+                    top: ${Math.random() * 80}%;
+                    transition: transform 0.3s;
+                `;
 
-    function simulateError() {
-      try {
-        undefinedFunction();
-      } catch (error) {
-        document.getElementById('errorMessage').textContent = 
-          `এরর: ${error.message}`;
-      }
-    }
+                target.onclick = () => {
+                    score++;
+                    document.getElementById('score').textContent = score;
+                    target.style.transform = 'scale(1.2)';
+                    setTimeout(() => gameArea.removeChild(target), 100);
+                    createTarget();
+                };
 
-    // সিমুলেটেড মডিউল সিস্টেম
-    const mathModule = (() => {
-      const add = (a, b) => a + b;
-      return { add };
-    })();
+                gameArea.appendChild(target);
+            }
 
-    function calculate() {
-      document.getElementById('moduleOutput').textContent = 
-        `যোগফল: ${mathModule.add(5, 3)}`;
-    }
+            createTarget();
+        }
 
-    // XSS প্রতিরোধ
-    function sanitizeInput() {
-      const userInput = document.getElementById('userInput').value;
-      const safeOutput = userInput.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      document.getElementById('safeOutput').innerHTML = safeOutput;
-    }
+        // এসিনক্রোনাস ডেমো
+        async function fetchUserData() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
+                const data = await response.json();
+                document.getElementById('userData').innerHTML = `
+                    নাম: ${data.name}<br>
+                    ইমেইল: <span style="color: #3b82f6">${data.email}</span>
+                `;
+            } catch (error) {
+                alert('ডেটা লোড করতে সমস্যা!');
+            }
+        }
 
-    // ওয়েবসকেট ডেমো (সিমুলেটেড)
-    const chatHistory = [];
-    function sendMessage() {
-      const message = document.getElementById('messageInput').value;
-      chatHistory.push(message);
-      updateChatBox();
-      document.getElementById('messageInput').value = '';
-    }
-
-    function updateChatBox() {
-      const chatBox = document.getElementById('chatBox');
-      chatBox.innerHTML = chatHistory.map(msg => `
-        <div style="margin:5px; padding:5px; background:#e3f2fd;">${msg}</div>
-      `).join('');
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    // ডার্ক মোড টগল
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-
-    // DOM ম্যানিপুলেশন
-    function changeText() {
-      document.getElementById('domDemo').innerHTML = 
-        `<span style="color:red;">টেক্সট পরিবর্তিত হয়েছে!</span>`;
-    }
-
-    // ড্র্যাগ অ্যান্ড ড্রপ
-    function handleDrop(event) {
-      event.preventDefault();
-      const files = event.dataTransfer.files;
-      document.getElementById('fileStatus').textContent = 
-        `${files.length} টি ফাইল সিলেক্ট করা হয়েছে`;
-    }
-
-    // OOP ডেমো
-    function createAnimal() {
-      class Dog extends Animal {
-        speak() { return `${this.name} হাঁসছে!`; }
-      }
-      const dog = new Dog('বাডি');
-      document.getElementById('animalOutput').textContent = dog.speak();
-    }
-
-    // টো-ডু লিস্ট
-    function addTodo() {
-      const input = document.getElementById('todoInput');
-      const list = document.getElementById('todoItems');
-      const li = document.createElement('li');
-      li.textContent = input.value;
-      list.appendChild(li);
-      localStorage.setItem('todos', list.innerHTML);
-      input.value = '';
-    }
-
-    // গেম লজিক
-    function startGame() {
-      let score = 0;
-      const gameArea = document.getElementById('gameArea');
-      
-      const createTarget = () => {
-        const target = document.createElement('div');
-        target.style.position = 'absolute';
-        target.style.left = Math.random() * 80 + '%';
-        target.style.top = Math.random() * 70 + '%';
-        target.style.width = '30px';
-        target.style.height = '30px';
-        target.style.backgroundColor = '#f44336';
-        target.style.borderRadius = '50%';
-        target.style.cursor = 'pointer';
-        
-        target.onclick = function() {
-          score++;
-          document.getElementById('score').textContent = score;
-          gameArea.removeChild(target);
-          createTarget();
-        };
-
-        gameArea.appendChild(target);
-      }
-
-      createTarget();
-    }
-
-   // স্ক্রল ইভেন্ট লিসেনার আপডেট করুন
-  window.addEventListener('scroll', () => {
-    document.querySelectorAll('.card').forEach(card => {
-      const rect = card.getBoundingClientRect();
-      if(rect.top < window.innerHeight + 100) {
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }
-    });
-  });
-  </script>
+        // স্ক্রল এনিমেশন
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if(rect.top < window.innerHeight * 0.8) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
