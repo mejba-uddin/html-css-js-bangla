@@ -232,6 +232,15 @@
     </div>
   </div>
   <script>
+     // DOM কন্টেন্ট লোড হওয়ার পরেই কার্ড দেখা যাবে
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    });
+  });
+
+ 
        // নতুন ফাংশনালিটি
     async function fetchUserData() {
       try {
@@ -368,15 +377,16 @@
       createTarget();
     }
 
-    // স্ক্রল এনিমেশন
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.card').forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if(rect.top < window.innerHeight) {
-          card.style.animationPlayState = 'running';
-        }
-      });
+   // স্ক্রল ইভেন্ট লিসেনার আপডেট করুন
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.card').forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if(rect.top < window.innerHeight + 100) {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }
     });
+  });
   </script>
 </body>
 </html>
