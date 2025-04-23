@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>জাভাস্ক্রিপ্ট সম্পূর্ণ গাইড - বাংলা</title>
+  <style>
+    /* CSS গাইডের সকল স্টাইল */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: #f0f8ff;
+      animation: fadeIn 1s ease-in;
+      transition: background 0.5s, color 0.5s;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    h1, h2, h3 { color: #2c3e50; }
+    .card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: scrollFade 1s forwards;
+    }
+    .demo {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px dashed #aaa;
+      background: #fafafa;
+    }
+    .animated-button {
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .dark-mode { background-color: #121212; color: #ffffff; }
+    
+    /* নতুন স্টাইল */
+    .game-container {
+      background: #ffe0b2;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+    .drag-drop-zone {
+      border: 2px dashed #2196F3;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0;
+    }
+    .counter-box {
+      font-size: 24px;
+      padding: 15px;
+      background: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .todo-list { background: #f5f5f5; padding: 15px; }
+  </style>
+</head>
+<body>
+  <h1>জাভাস্ক্রিপ্ট সম্পূর্ণ গাইড</h1>
+  <button onclick="toggleDarkMode()" class="animated-button">ডার্ক মোড</button>
+
+  <div class="nav-table">
+    <a href="#basics">বেসিক</a>
+    <a href="#dom">DOM</a>
+    <a href="#events">ইভেন্ট</a>
+    <a href="#oop">OOP</a>
+    <a href="#storage">স্টোরেজ</a>
+    <a href="#game">গেম</a>
+  </div>
+
+  <!-- বেসিক সেকশন -->
+  <div class="card" id="basics">
+    <h3>ভেরিয়েবল এবং ডেটা টাইপ</h3>
+    <code>let name = "রাহুল"; const age = 25;</code>
+    <div class="demo" onclick="alert('বয়স: ' + age)">
+      ক্লিক করে বয়স দেখুন
+    </div>
+  </div>
+
+  <!-- DOM ম্যানিপুলেশন -->
+  <div class="card" id="dom">
+    <h3>DOM অপারেশন</h3>
+    <div id="domDemo">মূল কন্টেন্ট</div>
+    <button class="animated-button" onclick="changeText()">টেক্সট পরিবর্তন</button>
+  </div>
+
+  <!-- ইভেন্ট হ্যান্ডলিং -->
+  <div class="card" id="events">
+    <h3>ইভেন্ট লিসেনার</h3>
+    <div class="drag-drop-zone" ondragover="event.preventDefault()" ondrop="handleDrop(event)">
+      ফাইল ড্রপ করুন
+    </div>
+    <p id="fileStatus"></p>
+  </div>
+
+  <!-- OOP -->
+  <div class="card" id="oop">
+    <h3>অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিং</h3>
+    <code>
+      class Animal {<br>
+        constructor(name) { this.name = name; }<br>
+        speak() { return `${this.name} শব্দ করছে!`; }<br>
+      }
+    </code>
+    <button class="animated-button" onclick="createAnimal()">ডেমো চালান</button>
+    <p id="animalOutput"></p>
+  </div>
+
+  <!-- লোকাল স্টোরেজ -->
+  <div class="card" id="storage">
+    <h3>লোকাল স্টোরেজ</h3>
+    <div class="todo-list">
+      <input type="text" id="todoInput" placeholder="নতুন কাজ">
+      <button class="animated-button" onclick="addTodo()">যোগ করুন</button>
+      <div id="todoItems"></div>
+    </div>
+  </div>
+
+  <!-- গেম ডেভেলপমেন্ট -->
+  <div class="card" id="game">
+    <h3>ক্লিক গেম</h3>
+    <div class="game-container">
+      <p>স্কোর: <span id="score">0</span></p>
+      <div id="gameArea" style="height:100px;position:relative;"></div>
+      <button class="animated-button" onclick="startGame()">গেম শুরু করুন</button>
+    </div>
+  </div>
+
+  <script>
+    // ডার্ক মোড টগল
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    // DOM ম্যানিপুলেশন
+    function changeText() {
+      document.getElementById('domDemo').innerHTML = 
+        `<span style="color:red;">টেক্সট পরিবর্তিত হয়েছে!</span>`;
+    }
+
+    // ড্র্যাগ অ্যান্ড ড্রপ
+    function handleDrop(event) {
+      event.preventDefault();
+      const files = event.dataTransfer.files;
+      document.getElementById('fileStatus').textContent = 
+        `${files.length} টি ফাইল সিলেক্ট করা হয়েছে`;
+    }
+
+    // OOP ডেমো
+    function createAnimal() {
+      class Dog extends Animal {
+        speak() { return `${this.name} হাঁসছে!`; }
+      }
+      const dog = new Dog('বাডি');
+      document.getElementById('animalOutput').textContent = dog.speak();
+    }
+
+    // টো-ডু লিস্ট
+    function addTodo() {
+      const input = document.getElementById('todoInput');
+      const list = document.getElementById('todoItems');
+      const li = document.createElement('li');
+      li.textContent = input.value;
+      list.appendChild(li);
+      localStorage.setItem('todos', list.innerHTML);
+      input.value = '';
+    }
+
+    // গেম লজিক
+    function startGame() {
+      let score = 0;
+      const gameArea = document.getElementById('gameArea');
+      
+      const createTarget = () => {
+        const target = document.createElement('div');
+        target.style.position = 'absolute';
+        target.style.left = Math.random() * 80 + '%';
+        target.style.top = Math.random() * 70 + '%';
+        target.style.width = '30px';
+        target.style.height = '30px';
+        target.style.backgroundColor = '#f44336';
+        target.style.borderRadius = '50%';
+        target.style.cursor = 'pointer';
+        
+        target.onclick = function() {
+          score++;
+          document.getElementById('score').textContent = score;
+          gameArea.removeChild(target);
+          createTarget();
+        };
+
+        gameArea.appendChild(target);
+      }
+
+      createTarget();
+    }
+
+    // স্ক্রল এনিমেশন
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if(rect.top < window.innerHeight) {
+          card.style.animationPlayState = 'running';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
