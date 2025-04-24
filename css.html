@@ -1,501 +1,682 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS সম্পূর্ণ গাইড (বাংলা)</title>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      padding: 20px;
-      background-color: #f0f8ff;
-      animation: fadeIn 1s ease-in;
-      transition: background 0.5s, color 0.5s;
-    }
- :root {
-      --primary-color: #4CAF50;
-      --secondary-color: #2196F3;
-    }
-
-    .css-variable-box {
-      background: var(--primary-color);
-      color: white;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 8px;
-    }
-
-    .gradient-box {
-      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      border-radius: 10px;
-    }
-
-    .shadow-box {
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 10px;
-      transition: box-shadow 0.3s;
-    }
-
-    .transform-box {
-      width: 100px;
-      height: 100px;
-      background: #ff5722;
-      margin: 20px auto;
-      transition: transform 0.5s;
-    }
-
-    .transform-box:hover {
-      transform: rotate(45deg) scale(1.2);
-    }
-
-    .responsive-img {
-      width: 100%;
-      height: auto;
-      max-width: 600px;
-      border-radius: 8px;
-    }
-
-    .z-index-demo {
-      position: relative;
-      height: 120px;
-    }
-
-    .z-index-box {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      padding: 10px;
-    }
-
-    .overflow-demo {
-      width: 200px;
-      height: 100px;
-      border: 2px solid #333;
-      margin: 10px 0;
-      overflow: auto;
-    }
-
-    .css-function-example {
-      width: calc(100% - 40px);
-      margin: 10px auto;
-      padding: 20px;
-      background: #e91e63;
-      color: white;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    h1, h2, h3 {
-      color: #2c3e50;
-    }
-    p {
-      margin-bottom: 10px;
-    }
-    code {
-      background: #e0e0e0;
-      padding: 2px 4px;
-      border-radius: 4px;
-      display: block;
-      white-space: pre-wrap;
-    }
-    .example {
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-    .example:hover {
-      background: #f9f9f9;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 5px;
-    }
-    .nav-table a {
-      display: block;
-      margin: 5px 0;
-      color: #007bff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-    .nav-table a:hover {
-      color: #0056b3;
-    }
-    .demo {
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px dashed #aaa;
-      background: #fafafa;
-      transition: background 0.3s;
-    }
-    .demo:hover {
-      background: #f0f0f0;
-    }
-    .animated-button {
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 10px;
-      background: linear-gradient(45deg, #6a11cb, #2575fc);
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .animated-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    }
-    .card {
-      background: #ffffff;
-      border-radius: 15px;
-      padding: 20px;
-      margin: 20px 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: box-shadow 0.3s, transform 0.3s;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: scrollFade 1s forwards;
-    }
-    @keyframes scrollFade {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .fun-effect {
-      font-size: 20px;
-      font-weight: bold;
-      color: #ff6347;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .loader {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #3498db;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
- }
-    .dark-mode {
-      background-color: #121212;
-      color: #ffffff;
-    }
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-    }
-    .tooltip .tooltiptext {
-      visibility: hidden;
-      width: 120px;
-      background-color: black;
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 5px;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      margin-left: -60px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .tooltip:hover .tooltiptext {
-      visibility: visible;
-      opacity: 1;
-    }
-  </style>
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-    window.addEventListener('scroll', () => {
-      const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          card.style.animationPlayState = 'running';
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সম্পূর্ণ CSS গাইড - বাংলা</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.1);
         }
-      });
-    });
-  </script>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #4f46e5, #8b5cf6);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* হেডার স্টাইল */
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--light);
+        }
+        /* সংশোধিত নেভ টগল স্টাইল */
+        .nav-toggle {
+            display: none;
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 80px; /* সংশোধিত টপ পজিশন */
+                left: 1rem;
+                right: 1rem;
+                background: var(--glass);
+                padding: 1rem;
+                border-radius: 15px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+                flex-direction: column;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* নেভিগেশন মেনু */
+        .nav-container {
+           position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+            border-radius: 15px;
+            margin: 1rem 0;
+            z-index: 1000;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            flex-wrap: nowrap;
+            justify-content: center;
+            overflow-y: scroll ;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* কার্ড ডিজাইন */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        /* ডেমো এলাকা */
+        .demo {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        code {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            color: #fff;
+            font-family: monospace;
+            display: block;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        /* ইন্টার্যাক্টিভ কম্পোনেন্ট */
+        .interactive-box {
+            padding: 1rem;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+            margin: 1rem 0;
+        }
+
+        .interactive-box:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* ডার্ক মোড */
+        .dark-mode {
+            background: linear-gradient(45deg, #1e1e1e, #2d2d2d);
+            color: #ffffff;
+        }
+
+        .dark-mode .card {
+            background: rgba(0,0,0,0.3);
+        }
+
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+        }
+
+        /* বিশেষ কম্পোনেন্ট */
+        .gradient-box {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+            margin: 1rem 0;
+        }
+
+        .transform-box {
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            margin: 1rem auto;
+            transition: transform 0.5s;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+        .transform-box:hover {
+            transform: rotate(45deg) scale(1.2);
+        }
+
+        .z-index-demo {
+            position: relative;
+            height: 150px;
+            margin: 2rem 0;
+        }
+
+        .z-index-box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            padding: 1rem;
+            border-radius: 15px;
+        }
+
+        .overflow-demo {
+            width: 200px;
+            height: 100px;
+            border: 2px solid var(--primary);
+            margin: 1rem 0;
+            overflow: auto;
+            padding: 1rem;
+        }
+    </style>
 </head>
 <body>
-  <h1 class="fun-effect">CSS সম্পূর্ণ গাইড</h1>
-  <button onclick="toggleDarkMode()" class="animated-button">ডার্ক মোড চালু করুন</button>
+    <div class="container">
+        <header>
+            <h1 class="title">সম্পূর্ণ CSS গাইড</h1>
+            <button class="nav-link" onclick="toggleDarkMode()">ডার্ক মোড</button>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+        </header>
 
-  <h2>টপিক ন্যাভিগেশন</h2>
-  <div class="nav-table">
-    <a href="#css-ki">CSS কি?</a>
-    <a href="#keno-css">কেন CSS ব্যবহার করা হয়?</a>
-    <a href="#css-dhoron">CSS এর ধরন</a>
-    <a href="#css-gothon">CSS এর গঠন</a>
-    <a href="#css-selector">CSS সিলেক্টর সমূহ</a>
-    <a href="#css-properties">CSS এর গুরুত্বপূর্ণ প্রপার্টি</a>
-    <a href="#box-model">Box Model</a>
-    <a href="#display-property">Display প্রপার্টি</a>
-    <a href="#position-property">Position প্রপার্টি</a>
-    <a href="#flexbox-grid">Flexbox ও Grid Layout</a>
-    <a href="#pseudo">Pseudo-class ও Pseudo-element</a>
-    <a href="#animation">Transition ও Animation</a>
-    <a href="#media-queries">Media Queries</a>
-     <a href="#css-variables">CSS ভেরিয়েবল</a>
-    <a href="#gradient">গ্রেডিয়েন্ট</a>
-    <a href="#shadow">শ্যাডো ইফেক্ট</a>
-    <a href="#transform">ট্রান্সফর্ম</a>
-    <a href="#responsive-image">রেস্পন্সিভ ইমেজ</a>
-    <a href="#z-index">Z-ইনডেক্স</a>
-    <a href="#css-functions">CSS ফাংশন</a>
-    <a href="#overflow">ওভারফ্লো</a>
-  </div>
+        <nav class="nav-container">
+            <div class="nav-menu">
+                <a href="#css-ki" class="nav-link">CSS কি?</a>
+                <a href="#keno-css" class="nav-link">কেন CSS?</a>
+                <a href="#css-dhoron" class="nav-link">ধরন</a>
+                <a href="#css-gothon" class="nav-link">গঠন</a>
+                <a href="#css-selector" class="nav-link">সিলেক্টর</a>
+                <a href="#css-properties" class="nav-link">প্রপার্টি</a>
+                <a href="#box-model" class="nav-link">বক্স মডেল</a>
+                <a href="#flexbox-grid" class="nav-link">Flex/Grid</a>
+                <a href="#pseudo" class="nav-link">Pseudo</a>
+                <a href="#animation" class="nav-link">অ্যানিমেশন</a>
+                <a href="#media-queries" class="nav-link">মিডিয়া</a>
+                <a href="#css-variables" class="nav-link">ভেরিয়েবল</a>
+                <a href="#gradient" class="nav-link">গ্রেডিয়েন্ট</a>
+                <a href="#shadow" class="nav-link">শ্যাডো</a>
+                <a href="#transform" class="nav-link">ট্রান্সফর্ম</a>
+                <a href="#z-index" class="nav-link">Z-ইনডেক্স</a>
+                <a href="#overflow" class="nav-link">ওভারফ্লো</a>
+                <a href="#css-attributes" class="nav-link">অ্যাট্রিবিউটস</a>
+                <a href="#css-classes" class="nav-link">ক্লাসেস</a>
+                <a href="#css-ids" class="nav-link">আইডি</a>
+                <a href="#css-fonts" class="nav-link">ফন্টস</a>
+                <a href="#css-colors" class="nav-link">রঙ</a>
+                <a href="#css-backgrounds" class="nav-link">
+                    ব্যাকগ্রাউন্ডস</a>
+                <a href="#css-borders" class="nav-link">বর্ডারস</a>
+                <a href="#css-margins" class="nav-link">মার্জিনস</a>
+                <a href="#css-paddings" class="nav-link">প্যাডিংস</a>
+                <a href="#css-text" class="nav-link">টেক্সট</a>
+                <a href="#css-lists" class="nav-link">লিস্টস</a>
+                <a href="#css-tables" class="nav-link">টেবিলস</a>
+                <a href="#css-images" class="nav-link">ইমেজেস</a>
+                <a href="#css-videos" class="nav-link">ভিডিওস</a>
+                <a href="#css-forms" class="nav-link">ফর্মস</a>
+                <a href="#css-buttons" class="nav-link">বাটনস</a>
+                <a href="#css-icons" class="nav-link">আইকনস</a>
+                <a href="#css-ki" class="nav-link">আরও...</a>
 
-  <div class="card" id="css-ki">
-    <h3>CSS কি?</h3>
-    <p>CSS (Cascading Style Sheets) হলো একটি স্টাইলিং ভাষা, যা HTML উপাদানগুলির সৌন্দর্য ও বিন্যাস নিয়ন্ত্রণ করে। CSS ব্যবহার করে আমরা ওয়েব পেজের ডিজাইন এবং লেআউটকে আরও আকর্ষণীয় করে তুলতে পারি।</p>
-    <div class="demo">
-      <code>p { color: blue; }</code>
-      <p style="color:blue">এই টেক্সট নীল রঙের।</p>
-    </div>
-  </div>
+            </div>
+        </nav>
 
-  <div class="card" id="keno-css">
-    <h3>কেন CSS ব্যবহার করা হয়?</h3>
-    <p>HTML কনটেন্টকে সুন্দর, আকর্ষণীয় ও ব্যবহারকারী-বান্ধব করতে CSS ব্যবহৃত হয়। CSS এর মাধ্যমে আমরা বিভিন্ন ডিজাইন উপাদান যেমন রঙ, ফন্ট, মার্জিন, প্যাডিং ইত্যাদি নিয়ন্ত্রণ করতে পারি।</p>
-    <div class="demo">
-      <code>h1 { text-align: center; color: green; }</code>
-      <h1 style="text-align:center; color:green">CSS শেখা মজা!</h1>
-    </div>
-  </div>
+        <!-- সমস্ত টপিক সেকশন -->
+        <section class="card" id="css-ki">
+            <h3>CSS কি?</h3>
+            <div class="demo">
+                <code>p { color: blue; }</code>
+                <div class="interactive-box" style="color: blue;">এই টেক্সট নীল রঙের</div>
+            </div>
+        </section>
 
-  <div class="card" id="css-dhoron">
-    <h3>CSS এর ধরন</h3>
-    <p>CSS তিনভাবে যুক্ত করা যায়:</p>
-    <ul>
-      <li><strong>Inline CSS:</strong> HTML ট্যাগের মধ্যে সরাসরি স্টাইল যুক্ত করা হয়।</li>
-      <li><strong>Internal CSS:</strong> HTML ডকুমেন্টের <code>&lt;head&gt;</code> সেকশনে <code>&lt;style&gt;</code> ট্যাগের মধ্যে CSS কোড লেখা হয়। </li>
-      <li><strong>External CSS:</strong> একটি আলাদা CSS ফাইল তৈরি করে সেটিকে HTML ডকুমেন্টে <code>&lt;link&gt;</code> ট ্যাগের মাধ্যমে যুক্ত করা হয়।</li>
-    </ul>
-    <div class="demo">
-      <code>&lt;p style="color:red;"&gt;Inline CSS&lt;/p&gt;</code>
-      <p style="color:red;">Inline CSS</p>
-    </div>
-  </div>
+        <section class="card" id="keno-css">
+            <h3>কেন CSS ব্যবহার করা হয়?</h3>
+            <div class="demo">
+                <code>h1 { text-align: center; color: green; }</code>
+                <div class="interactive-box" style="text-align: center; color: green;">CSS শেখা মজা!</div>
+            </div>
+        </section>
 
-  <div class="card" id="css-gothon">
-    <h3>CSS এর গঠন</h3>
-    <p>CSS কোড মূলত দুটি অংশে বিভক্ত: সিলেক্টর এবং ডিক্লারেশন ব্লক। সিলেক্টর দ্বারা আমরা কোন HTML এলিমেন্টকে টার্গেট করছি তা নির্ধারণ করি এবং ডিক্লারেশন ব্লকে প্রপার্টি ও তাদের মান উল্লেখ করা হয়।</p>
-    <div class="demo">
-      <code>selector { property: value; }</code>
-      <p>উদাহরণ: <code>h1 { color: blue; }</code></p>
-    </div>
-  </div>
+        <section class="card" id="css-dhoron">
+            <h3>CSS এর ধরন</h3>
+            <div class="demo">
+                <code>&lt;style&gt;
+    p { color: red; }
+&lt;/style&gt;</code>
+                <div class="interactive-box" style="color: red;">Internal CSS</div>
+            </div>
+        </section>
 
-  <div class="card" id="css-selector">
-    <h3>CSS সিলেক্টর সমূহ</h3>
-    <p>CSS সিলেক্টর দ্বারা HTML এলিমেন্ট নির্বাচন করা হয়। যেমন:</p>
-    <ul>
-      <li><strong>Element Selector:</strong> নির্দিষ্ট HTML এলিমেন্ট নির্বাচন করে।</li>
-      <li><strong>Class Selector:</strong> একটি বা একাধিক এলিমেন্টের জন্য একই স্টাইল প্রয়োগ করতে ব্যবহৃত হয়।</li>
-      <li><strong>ID Selector:</strong> একটি নির্দিষ্ট এলিমেন্টের জন্য স্টাইল প্রয়োগ করতে ব্যবহৃত হয়।</li>
-      <li><strong>Universal Selector:</strong> সব এলিমেন্টকে টার্গেট করে।</li>
-    </ul>
-    <div class="demo">
-      <code>.className { color: pink; }</code>
-      <p class="example" style="color:pink;">Class Selector Example</p>
-    </div>
-  </div>
+        <section class="card" id="css-gothon">
+            <h3>CSS গঠন</h3>
+            <div class="demo">
+                <code>selector { property: value; }</code>
+                <div class="interactive-box">h1 { color: blue; }</div>
+            </div>
+        </section>
 
-  <div class="card" id="css-properties">
-    <h3>CSS এর গুরুত্বপূর্ণ প্রপার্টি</h3>
-    <p>CSS এর কিছু গুরুত্বপূর্ণ প্রপার্টি হলো: <strong>color</strong>, <strong>background-color</strong>, <strong>font-size</strong>, <strong>margin</strong>, <strong>padding</strong> ইত্যাদি। এই প্রপার্টিগুলি ব্যবহার করে আমরা এলিমেন্টের চেহারা পরিবর্তন করতে পারি।</p>
-    <div class="demo">
-      <code>div { background-color: lightblue; padding: 20px; }</code>
-      <div style="background-color:lightblue; padding:20px;">Background সহ ডিভ।</div>
-    </div>
-  </div>
+        <section class="card" id="css-selector">
+            <h3>CSS সিলেক্টর</h3>
+            <div class="demo">
+                <code>.class { color: pink; }
+#id { color: yellow; }</code>
+                <div class="interactive-box" style="color: pink;">Class Selector</div>
+            </div>
+        </section>
 
-  <div class="card" id="box-model">
-    <h3>Box Model</h3>
-    <p>HTML প্রতিটি এলিমেন্ট একটি বক্স হিসেবে বিবেচিত হয়: Margin, Border, Padding এবং Content। Box Model বুঝতে পারলে আমরা এলিমেন্টের সঠিক বিন্যাস ও স্থান নির্ধারণ করতে পারি।</p>
-    <div class="demo">
-      <code>div { padding: 20px; border: 5px solid black; margin: 10px; }</code>
-      <div style="padding:20px; border:5px solid black; margin:10px;">Box Model Example</div>
-    </div>
-  </div>
-
-  <div class="card" id="display-property">
-    <h3>Display প্রপার্টি</h3>
-    <p>HTML এলিমেন্ট কিভাবে প্রদর্শিত হবে তা নির্ধারণ করে (inline, block, flex, grid ইত্যাদি)। Display প্রপার্টি ব্যবহার করে আমরা এলিমেন্টের প্রদর্শন পদ্ধতি পরিবর্তন করতে পারি।</p>
-    <div class="demo">
-      <code>span { display: block; }</code>
-      <span style="display:block; background:#ddd;">Block Span</span>
-    </div>
-  </div>
-
-  <div class="card" id="position-property">
-    <h3>Position প্রপার্টি</h3>
-    <p>এলিমেন্টের পজিশন নির্ধারণ করতে ব্যবহৃত হয়: static, relative, absolute, fixed, sticky। Position প্রপার্টি ব্যবহার করে আমরা এলিমেন্টের অবস্থান নিয়ন্ত্রণ করতে পারি।</p>
-    <div class="demo">
-      <code>div { position: relative; top: 10px; }</code>
-      <div style="position:relative; top:10px; background:lightgreen;">Relative Position</div>
- </div>
-  </div>
-
-  <div class="card" id="flexbox-grid">
-    <h3>Flexbox ও Grid Layout</h3>
-    <p>CSS Flexbox এবং Grid Layout এলিমেন্টের লেআউট ডিজাইন করতে ব্যবহৃত হয়। Flexbox একমাত্র দিকের লেআউটের জন্য এবং Grid দুইটি দিকের লেআউটের জন্য উপযুক্ত।</p>
-    <div class="demo">
-      <code>display: flex;</code>
-      <div style="display:flex; gap:10px;">
-        <div style="background:orange; padding:10px;">Flex 1</div>
-        <div style="background:orange; padding:10px;">Flex 2</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" id="pseudo">
-    <h3>Pseudo-class ও Pseudo-element</h3>
-    <p>বিশেষ অবস্থায় এলিমেন্ট স্টাইল করার জন্য ব্যবহৃত হয়, যেমন :hover, :first-child, ::before, ::after ইত্যাদি। Pseudo-class ব্যবহার করে আমরা এলিমেন্টের বিশেষ অবস্থার জন্য স্টাইল প্রয়োগ করতে পারি।</p>
-    <div class="demo">
-      <code>a:hover { color: red; }</code>
-      <a href="#" style="color: blue;" 
-  onmouseover="this.style.color='red';" 
-  onmouseout="this.style.color='blue';">মাউস নিয়ে আসুন</a>
-    </div>
-  </div>
-
-  <div class="card" id="animation">
-    <h3>Transition ও Animation</h3>
-    <p>এলিমেন্টে ধীরে ধীরে পরিবর্তন বা মুভমেন্ট যোগ করা হয়। Transition ব্যবহার করে আমরা এলিমেন্টের স্টাইল পরিবর্তনের সময়কাল নির্ধারণ করতে পারি।</p>
-    <div class="demo">
-      <code>div { transition: all 0.5s; }</code>
-      <div style="background:lightcoral; padding:20px; transition:all 0.5s;">Hover me!</div>
-    </div>
-  </div>
-
-  <div class="card" id="media-queries">
-    <h3>Media Queries</h3>
-    <p>ভিন্ন ভিন্ন ডিভাইস সাইজ অনুযায়ী CSS স্টাইল পরিবর্তন করতে ব্যবহৃত হয়। Media Queries ব্যবহার করে আমরা রেসপন্সিভ ডিজাইন তৈরি করতে পারি।</p>
-    <div class="demo">
-      <code>@media (max-width: 600px) { body { background: yellow; } }</code>
-      <p>স্ক্রীন ছোট করলে ব্যাকগ্রাউন্ড পরিবর্তন হবে।</p>
-    </div>
-  </div>
-  <!-- নতুন কন্টেন্ট যোগ করা হলো -->
-  <div class="card" id="css-variables">
-    <h3>CSS কাস্টম প্রপার্টি (Variables)</h3>
-    <p>CSS ভেরিয়েবল ব্যবহার করে আমরা রি-ইউজেবল মান সংজ্ঞায়িত করতে পারি। এটি ডাইনামিক স্টাইলিং এবং থিম সাপোর্টের জন্য খুবই কার্যকর।</p>
-    <div class="demo">
-      <code>:root {
-  --primary-color: #4CAF50;
-}
-.element {
-  background: var(--primary-color);
+        <section class="card" id="box-model">
+            <h3>বক্স মডেল</h3>
+            <div class="demo">
+                <code>div {
+    padding: 20px;
+    margin: 15px;
+    border: 2px solid #6366f1;
 }</code>
-      <div class="css-variable-box">ভেরিয়েবল ব্যবহার করে তৈরি বক্স</div>
-    </div>
-  </div>
+                <div style="padding:20px; margin:15px; border:2px solid #6366f1;">
+                    বক্স মডেল উদাহরণ
+                </div>
+            </div>
+        </section>
 
-  <div class="card" id="gradient">
-    <h3>গ্রেডিয়েন্ট ব্যাকগ্রাউন্ড</h3>
-    <p>লিনিয়ার এবং রেডিয়াল গ্রেডিয়েন্ট ব্যবহার করে আকর্ষণীয় ব্যাকগ্রাউন্ড তৈরি করা যায়।</p>
-    <div class="demo">
-      <code>background: linear-gradient(45deg, #ff6b6b, #4ecdc4);</code>
-      <div class="gradient-box">গ্রেডিয়েন্ট বক্স</div>
-    </div>
-  </div>
+        <section class="card" id="flexbox-grid">
+            <h3>Flexbox & Grid</h3>
+            <div class="demo">
+                <code>.container {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 20px;
+                }</code>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div class="interactive-box">Item 1</div>
+                    <div class="interactive-box">Item 2</div>
+                    <div class="interactive-box">Item 3</div>
+                </div>
+            </div>
+        </section>
 
-  <div class="card" id="shadow">
-    <h3>শ্যাডো ইফেক্ট</h3>
-    <p>বক্স-শ্যাডো প্রপার্টি ব্যবহার করে এলিমেন্টে ড্রপ শ্যাডো যুক্ত করা যায়।</p>
-    <div class="demo">
-      <code>box-shadow: 0 10px 20px rgba(0,0,0,0.2);</code>
-      <div class="shadow-box">শ্যাডো সহ বক্স</div>
-    </div>
-  </div>
-
-  <div class="card" id="transform">
-    <h3>ট্রান্সফর্ম প্রপার্টি</h3>
-    <p>এলিমেন্টকে ঘোরানো, স্কেল করা এবং স্থানান্তর করতে ট্রান্সফর্ম প্রপার্টি ব্যবহার করা হয়।</p>
-    <div class="demo">
-      <code>transform: rotate(45deg) scale(1.2);</code>
-      <div class="transform-box"></div>
-    </div>
-  </div>
-
-  <div class="card" id="responsive-image">
-    <h3>রেস্পন্সিভ ইমেজ</h3>
-    <p>max-width এবং width প্রপার্টি ব্যবহার করে ইমেজকে রেস্পন্সিভ করা যায়।</p>
-    <div class="demo">
-      <code>img {
-  width: 100%;
-  max-width: 600px;
+        <section class="card" id="animation">
+            <h3>অ্যানিমেশন</h3>
+            <div class="demo">
+                <code>@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
 }</code>
-      <img src="image.png" alt="demo" class="responsive-img">
-    </div>
-  </div>
+                <div class="interactive-box" style="animation: slideIn 1s ease-out">
+                    স্লাইড ইন অ্যানিমেশন
+                </div>
+            </div>
+        </section>
 
-  <div class="card" id="z-index">
-    <h3>Z-ইনডেক্স</h3>
-    <p>এলিমেন্টের স্ট্যাকিং অর্ডার নিয়ন্ত্রণ করতে Z-ইনডেক্স ব্যবহার করা হয়।</p>
-    <div class="demo z-index-demo">
-      <div class="z-index-box" style="background:#4CAF50; top:20px; left:50px; z-index:2;">লেয়ার 2</div>
-      <div class="z-index-box" style="background:#2196F3; top:50px; left:20px; z-index:1;">লেয়ার 1</div>
-    </div>
-  </div>
+        <section class="card" id="css-variables">
+            <h3>CSS ভেরিয়েবল</h3>
+            <div class="demo">
+                <code>:root {
+    --primary-color: #6366f1;
+}</code>
+                <div class="interactive-box" style="background: var(--primary);">
+                    ভেরিয়েবল ব্যবহার
+                </div>
+            </div>
+        </section>
 
-  <div class="card" id="css-functions">
-    <h3>CSS ফাংশন</h3>
-    <p>calc(), rgba(), var() ইত্যাদি ফাংশন ব্যবহার করে ডাইনামিক ভ্যালু নির্ধারণ করা যায়।</p>
-    <div class="demo">
-      <code>width: calc(100% - 40px);</code>
-      <div class="css-function-example">calc() ফাংশন উদাহরণ</div>
-    </div>
-  </div>
+        <section class="card" id="gradient">
+            <h3>গ্রেডিয়েন্ট</h3>
+            <div class="demo">
+                <code>background: linear-gradient(45deg, #ff6b6b, #4ecdc4);</code>
+                <div class="gradient-box">গ্রেডিয়েন্ট উদাহরণ</div>
+            </div>
+        </section>
 
-  <div class="card" id="overflow">
-    <h3>ওভারফ্লো প্রপার্টি</h3>
-    <p>কন্টেন্ট বেশি হলে স্ক্রলবার যোগ করতে overflow প্রপার্টি ব্যবহার করা হয়।</p>
-    <div class="demo">
-      <code>overflow: auto;</code>
-      <div class="overflow-demo">
-        <p>এই এলাকায় অনেক বেশি কন্টেন্ট থাকলে স্ক্রলবার দেখাবে। Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-    </div>
-  </div>
+        <section class="card" id="shadow">
+            <h3>শ্যাডো</h3>
+            <div class="demo">
+                <code>box-shadow: 0 10px 20px rgba(0,0,0,0.2);</code>
+                <div class="interactive-box" style="box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                    শ্যাডো উদাহরণ
+                </div>
+            </div>
+        </section>
+        <section class="card" id="position-property">
+            <h3>Position প্রপার্টি</h3>
+            <p>এলিমেন্টের পজিশন নির্ধারণ করতে ব্যবহৃত হয়: static, relative, absolute, fixed, sticky। Position প্রপার্টি ব্যবহার করে আমরা এলিমেন্টের অবস্থান নিয়ন্ত্রণ করতে পারি।</p>
+            <div class="demo">
+              <code>div { position: relative; top: 10px; }</code>
+              <div style="position:relative; top:10px; background:lightgreen;">Relative Position</div>
+         </div>
+          </section>
+        <section class="card" id="transform">
+            <h3>ট্রান্সফর্ম</h3>
+            <div class="demo">
+                <code>transform: rotate(45deg);</code>
+                <div class="transform-box"></div>
+            </div>
+        </section>
+        <section class="card" id="display-property">
+            <h3>Display প্রপার্টি</h3>
+            <p>HTML এলিমেন্ট কিভাবে প্রদর্শিত হবে তা নির্ধারণ করে (inline, block, flex, grid ইত্যাদি)। Display প্রপার্টি ব্যবহার করে আমরা এলিমেন্টের প্রদর্শন পদ্ধতি পরিবর্তন করতে পারি।</p>
+            <div class="demo">
+              <code>span { display: block; }</code>
+              <span style="display:block; background:#ddd;">Block Span</span>
+            </div>
+          </section>
+          <section class="card" id="pseudo">
+            <h3>Pseudo-class ও Pseudo-element</h3>
+            <p>বিশেষ অবস্থায় এলিমেন্ট স্টাইল করার জন্য ব্যবহৃত হয়, যেমন :hover, :first-child, ::before, ::after ইত্যাদি। Pseudo-class ব্যবহার করে আমরা এলিমেন্টের বিশেষ অবস্থার জন্য স্টাইল প্রয়োগ করতে পারি।</p>
+            <div class="demo">
+              <code>a:hover { color: red; }</code>
+              <a href="#" style="color: blue;" 
+          onmouseover="this.style.color='red';" 
+          onmouseout="this.style.color='blue';">মাউস নিয়ে আসুন</a>
+            </div>
+          </section>
+        <section class="card" id="z-index">
+            <h3>Z-ইনডেক্স</h3>
+            <div class="demo">
+                <code>z-index: 10;</code>
+                <div class="z-index-demo">
+                    <div class="z-index-box" style="background: red; z-index: 1;">Red Box</div>
+                    <div class="z-index-box" style="background: blue; z-index: 2;">Blue Box</div>
+                </div>
+            </div>
+        </section>
+        <section class="card" id="overflow">
+            <h3>ওভারফ্লো</h3>
+            <div class="demo">
+                <code>overflow: auto;</code>
+                <div class="overflow-demo">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+            </div>
+        </section>
+        <section class="card" id="media-queries">
+            <h3>মিডিয়া কোয়েরিজ</h3>
+            <div class="demo">
+                <code>@media (max-width: 600px) { body { background: lightblue; } }</code>
+                <div style="background: lightblue; padding: 20px;">মিডিয়া কোয়েরিজ উদাহরণ</div>
+            </div>  
+        </section>
+        <section class="card" id="css-properties">
+            <h3>CSS প্রপার্টি</h3>
+            <div class="demo">
+                <code>color: red;</code>
+                <div style="color: red;">এই টেক্সট লাল রঙের</div>
+            </div>
+        </section>
+        <section class="card" id="css-attributes">
+            <h3>CSS অ্যাট্রিবিউটস</h3>
+            <div class="demo">
+                <code>font-size: 16px;</code>
+                <div style="font-size: 16px;">এই টেক্সটের ফন্ট সাইজ 16px</div>
+            </div>
+        </section>
+        <section class="card" id="css-classes">
+            <h3>CSS ক্লাসেস</h3>
+            <div class="demo">
+                <code>.class-name { color: green; }</code>
+                <div class="interactive-box" style="color: green;">এই টেক্সটের ক্লাস নাম class-name</div>
+            </div>
+        </section>
+        <section class="card" id="css-ids">
+            <h3>CSS আইডি</h3>
+            <div class="demo">
+                <code>#id-name { color: orange; }</code>
+                <div class="interactive-box" style="color: orange;">এই টেক্সটের আইডি নাম id-name</div>
+            </div>
+        </section>
+        <section class="card" id="css-fonts">
+            <h3>CSS ফন্টস</h3>
+            <div class="demo">
+                <code>font-family: 'Arial', sans-serif;</code>
+                <div style="font-family: 'Arial', sans-serif;">এই টেক্সটের ফন্ট Arial</div>
+            </div>
+        </section>  
+        <section class="card" id="css-colors">
+            <h3>CSS রঙ</h3>
+            <div class="demo">
+                <code>background-color: #ff0000;</code>
+                <div style="background-color: #ff0000; padding: 20px;">এই টেক্সটের ব্যাকগ্রাউন্ড রঙ লাল</div>
+            </div>
+        </section>
+        <section class="card" id="css-backgrounds">
+            <h3>CSS ব্যাকগ্রাউন্ডস</h3>
+            <div class="demo">
+                <code>background-image: url('image.jpg');</code>
+                <div style="background-image: url('https://via.placeholder.com/150'); height: 150px; width: 150px;"></div>
+            </div>
+        </section>
+        <section class="card" id="css-borders">
+            <h3>CSS বর্ডারস</h3>
+            <div class="demo">
+                <code>border: 2px solid black;</code>
+                <div style="border: 2px solid black; padding: 20px;">এই টেক্সটের চারপাশে বর্ডার আছে</div>
+            </div>
+        </section>
+        <section class="card" id="css-margins">
+            <h3>CSS মার্জিনস</h3>
+            <div class="demo">
+                <code>margin: 20px;</code>
+                <div style="margin: 20px; background: lightgray;">এই টেক্সটের চারপাশে মার্জিন আছে</div>
+            </div>
+        </section>
+        <section class="card" id="css-paddings">
+            <h3>CSS প্যাডিংস</h3>
+            <div class="demo">
+                <code>padding: 20px;</code>
+                <div style="padding: 20px; background: lightblue;">এই টেক্সটের চারপাশে প্যাডিং আছে</div>
+            </div>
+        </section>
+        <section class="card" id="css-text">
+            <h3>CSS টেক্সট</h3>
+            <div class="demo">
+                <code>text-align: center;</code>
+                <div style="text-align: center;">এই টেক্সট সেন্টার অ্যালাইনড</div>
+            </div>
+        </section>  
+        <section class="card" id="css-lists">
+            <h3>CSS লিস্টস</h3>
+            <div class="demo">
+                <code>list-style-type: square;</code>
+                <ul style="list-style-type: square;">
+                    <li>লিস্ট আইটেম 1</li>
+                    <li>লিস্ট আইটেম 2</li>
+                    <li>লিস্ট আইটেম 3</li>
+                </ul>
+            </div>
+        </section>
+        <section class="card" id="css-tables">
+            <h3>CSS টেবিলস</h3>
+            <div class="demo">
+                <code>table { border-collapse: collapse; }</code>
+                <table style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th style="border: 1px solid black;">শিরোনাম 1</th>
+                        <th style="border: 1px solid black;">শিরোনাম 2</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">ডেটা 1</td>
+                        <td style="border: 1px solid black;">ডেটা 2</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        <section class="card" id="css-images">
+            <h3>CSS ইমেজেস</h3>
+            <div class="demo">
+                <code>img { width: 100%; }</code>
+                <img src="https://via.placeholder.com/150" alt="Placeholder Image" style="width: 100%;">
+            </div>
+        </section>
+        <section class="card" id="css-videos">
+            <h3>CSS ভিডিওস</h3>
+            <div class="demo">
+                <code>video { width: 100%; }</code>
+                <video controls style="width: 100%;">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    আপনার ব্রাউজারে ভিডিও প্লেব্যাক সমর্থিত নয়।
+                </video>
+            </div>
+        </section>
+        <section class="card" id="css-forms">
+            <h3>CSS ফর্মস</h3>
+            <div class="demo">
+                <code>input { border: 1px solid #ccc; }</code>
+                <input type="text" placeholder="এখানে লিখুন" style="border: 1px solid #ccc; padding: 10px;">
+            </div>
+        </section>
+        <section class="card" id="css-buttons">
+            <h3>CSS বাটনস</h3>
+            <div class="demo">
+                <code>button { background: #6366f1; color: white; }</code>
+                <button style="background: #6366f1; color: white; padding: 10px 20px; border: none; border-radius: 5px;">বাটন উদাহরণ</button>
+            </div>
+        </section>
+        <section class="card" id="css-icons">
+            <h3>CSS আইকনস</h3>
+            <div class="demo">
+                <code>i { font-size: 24px; }</code>
+                <i class="fas fa-home" style="font-size: 24px;"></i>
+            </div>
+        </section>
+        
+        <!-- বাকি সেকশনসমূহ একই প্যাটার্নে যোগ করুন -->
 
+    </div>
+
+    <script>
+             // সংশোধিত জাভাস্ক্রিপ্ট
+        function toggleNav() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+            event.stopPropagation(); // ইভেন্ট বাবলিং বন্ধ
+        }
+
+        // ক্লিক আউটসাইড ডিটেক্ট
+        document.addEventListener('click', function(event) {
+            const navMenu = document.querySelector('.nav-menu');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // নেভ লিঙ্ক ক্লিক হ্যান্ডলার
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+
+        // ডার্ক মোড টগল
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // স্ক্রল এনিমেশন
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if(rect.top < window.innerHeight * 0.8) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
